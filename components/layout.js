@@ -90,8 +90,8 @@ function Layout({ children }) {
                 <link rel="preload" href="/fonts/AvenirNextLTW02-Regular.woff2" as="font" crossOrigin="" />
                 <link rel="preload" href="/fonts/AvenirNextLTW02-Regular.woff" as="font" crossOrigin="" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-                <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500&display=swap" rel="stylesheet" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet" />
             </Head>
             <Header />
             <div>

@@ -12,7 +12,7 @@ const IntroStyles = styled.div`
     max-width: 1450px;
 
     h2 {
-        margin: 0 0 25px 0;
+        margin: 0 0 0 0;
         font-size: 4.3em;
         color: ${COLORS.primaryBlue};
     }
@@ -44,6 +44,8 @@ const IntroStyles = styled.div`
     }
 
     @media screen and (max-width: 800px) {
+        margin: 50px auto 0;
+
         h2 {
             font-size: 3em;
         }
@@ -58,7 +60,7 @@ const PurposeStyles = styled.div`
     height: auto;
 
     h2 {
-        margin: 0 0 25px 0;
+        margin: 0 0 0 0;
         font-size: 4.3em;
         padding: 0 25px;
         color: ${COLORS.primaryBlue};
@@ -99,6 +101,8 @@ const PurposeStyles = styled.div`
     }
 
     @media screen and (max-width: 800px) {
+        margin: 50px auto 0;
+
         h2 {
             font-size: 3em;
         }
@@ -112,7 +116,7 @@ const TeamStyles = styled.div`
     max-width: 1450px;
 
     h2 {
-        margin: 0 0 25px 0;
+        margin: 0 0 0 0;
         font-size: 4.3em;
         color: ${COLORS.primaryBlue};
     }
@@ -138,6 +142,8 @@ const TeamStyles = styled.div`
     } 
 
     @media screen and (max-width: 800px) {
+        margin: 50px auto 0;
+
         h2 {
             font-size: 3em;
         }

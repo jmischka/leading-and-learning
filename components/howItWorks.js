@@ -34,7 +34,7 @@ const HowItWorksStyles = styled.div`
 
             div.number {
                 margin: 0;
-                font-family: 'Bodoni Moda', serif;
+                font-family: 'Libre Caslon Display', serif;
                 font-size: 8em;
                 width: 56px;
                 letter-spacing: -3px;
@@ -42,7 +42,7 @@ const HowItWorksStyles = styled.div`
 
             div.double-number {
                 margin: 0;
-                font-family: 'Bodoni Moda', serif;
+                font-family: 'Libre Caslon Display', serif;
                 font-size: 8em;
                 width: 95px;
                 letter-spacing: -3px;

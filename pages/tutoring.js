@@ -49,7 +49,7 @@ const FlexWrapper = styled.div`
     height: auto;
     padding: 25px;
 
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 800px) {
       width: 100%;
     }
   }
@@ -60,7 +60,7 @@ const FlexWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
 
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 800px) {
       width: 100%;
       padding: 25px 25px 25px;
     }

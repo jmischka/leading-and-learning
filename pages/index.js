@@ -75,6 +75,8 @@ const HeaderContent = styled.div`
   }
 
   @media screen and (max-width: 800px) {
+    margin: 50px auto 0;
+
     h2 {
       font-size: 3em;
       width: 100%;
@@ -88,6 +90,10 @@ const ServicesContent = styled.div`
   width: 100%;
   max-width: 1450px;
   height: auto;
+
+  @media screen and (max-width: 800px) {
+    margin: 75px auto 0;
+  }
 
   .services-header {
     margin: 0;

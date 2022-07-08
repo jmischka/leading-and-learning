@@ -25,6 +25,10 @@ const MainImage = styled.div`
     height: 0;
     padding-bottom: 56.25%;
   }
+
+  @media screen and (max-width: 800px) {
+    margin: 0 0 0 0;
+  }
 `;
 
 function urlFor (source) {
