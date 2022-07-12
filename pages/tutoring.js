@@ -60,12 +60,8 @@ const FlexWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
 
-    @media screen and (max-width: 800px) {
-      width: 100%;
-      padding: 25px 25px 25px;
-    }
-
     div {
+      display: block;
       margin: 0;
       width: 50%;
 
@@ -74,6 +70,19 @@ const FlexWrapper = styled.div`
       }
       &:nth-child(even) {
         padding: 0 0 0 25px;
+      }
+
+      @media screen and (max-width: 800px) {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        &:nth-child(odd) {
+          padding: 0 0 0 0;
+        }
+        &:nth-child(even) {
+          padding: 0 0 0 0;
+        }
       }
     }
 
@@ -90,8 +99,21 @@ const FlexWrapper = styled.div`
       font-size: 1.8em;
       line-height: 1.3;
     }
-  }
 
+    @media screen and (max-width: 800px) {
+      width: 100%;
+      padding: 25px 25px 25px;
+
+      h3 {
+        width: 50%;
+      }
+
+      span {
+        width: 50%;
+        padding: 0 12px;
+      }
+    }
+  }
 `;
 
 

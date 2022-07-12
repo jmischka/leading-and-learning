@@ -57,7 +57,7 @@ const FlexWrapper = styled.div`
         padding: 35px 25px 25px;
     }
 
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 800px) {
       div {
         width: 100%;
       }
@@ -79,15 +79,31 @@ const OverviewTable = styled.div`
     padding: 0 !important;
 
     div {
+        display: block;
         margin: 0;
         width: 50%;
         height: auto;
         padding: 0;
+        
         &:nth-child(odd) {
             padding: 0 12px 0 0;
         }
         &:nth-child(even) {
             padding: 0 0 0 12px;
+        }
+
+        @media screen and (max-width: 800px) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+
+            &:nth-child(odd) {
+                padding: 0 0 0 0;
+            }
+            &:nth-child(even) {
+                padding: 0 0 0 0;
+            }
         }
     }
 
@@ -99,6 +115,7 @@ const OverviewTable = styled.div`
 
     ul {
         position: relative;
+        display: block;
         margin: 0;
         padding-left: 0;
         list-style-type: none;
@@ -108,6 +125,21 @@ const OverviewTable = styled.div`
         margin: 0;
         padding: 0;
         font-size: 1.6em;
+    }
+
+    @media screen and (max-width: 800px) {
+        h3 {
+            margin: 0 0 0;
+            width: 45%;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 0 0 16px;
+            width: 45%;
+        }
     }
 `;
 

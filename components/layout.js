@@ -68,6 +68,7 @@ main {
     height: auto;
     min-height: 100vh;
     padding: 115px 0 75px;
+    overflow-x: hidden;
 }
 
 .content-wrapper {

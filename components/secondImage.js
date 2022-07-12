@@ -16,6 +16,11 @@ const ImageStyles = styled.div`
     width: 100%;
     height: 0;
     padding-bottom: 33.333%;
+
+    @media screen and (max-width: 780px) {
+      width: 200%;
+      padding-bottom: 66.666%;
+    }
   }
 
   a {
