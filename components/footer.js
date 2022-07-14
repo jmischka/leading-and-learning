@@ -18,7 +18,7 @@ const Header = styled.div`
     margin: 0;
     width: calc(100%/12 * 4);
     height: auto;
-    padding: 25px;
+    padding: 25px 0;
 
     h2 {
         margin: 0 0 25px;
@@ -42,7 +42,7 @@ const FormStyles = styled.form`
     margin: 0;
     width: calc((100%/12 * 6) + 19px);
     height: auto;
-    padding: 0 25px 50px;
+    padding: 0 0 50px;
 
     @media screen and (max-width: 1000px) {
         width: 100%;

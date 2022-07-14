@@ -88,7 +88,7 @@ export default function HowItWorks({serviceTitle, howTitle, howCopy}) {
 
     useEffect(() => {
         let windowWidth = window.innerWidth;
-        if (windowWidth > 780) {
+        if (windowWidth > 800) {
             setIsMobile(false);
         }
     }, []);

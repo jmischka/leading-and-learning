@@ -75,7 +75,7 @@ main {
     position: relative;
     margin: 0 auto;
     width: 100%;
-    max-width: 1500px;
+    max-width: 1450px;
     height: auto;
     padding: 25px;
 }

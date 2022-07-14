@@ -12,6 +12,10 @@ const TestimonialWrapper = styled.div`
     margin: 100px auto 0;
     width: 100%;
     padding: 125px 0 75px;
+
+    @media screen and (max-width: 1200px) {
+        padding: 75px 0 75px;
+    }
 `;
 
 const TestimonialBackground = styled.div`

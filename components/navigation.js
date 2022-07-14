@@ -62,7 +62,7 @@ const NavStyles = styled.nav`
         transition-duration: 2s;
 
         @media screen and (max-width: 780px) {
-            display: none;
+            visibility: hidden;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
@@ -74,9 +74,10 @@ const NavStyles = styled.nav`
             background-color: white;
             z-index: 100;
             opacity: 0;
+            transition-duration: .5s;
 
             &.active {
-                display: flex;
+                visibility: visible;
                 opacity: 1;
             }
         }

@@ -137,7 +137,7 @@ const OverviewTable = styled.div`
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            margin: 0 0 16px;
+            margin: 0 0 25px;
             width: 45%;
         }
     }
