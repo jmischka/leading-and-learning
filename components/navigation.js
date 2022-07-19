@@ -2,8 +2,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Branding from '../public/L&L_LOGO.jpg'
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { COLORS } from '../styles/colors';
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`
 
 const NavStyles = styled.nav`
     position: relative;
@@ -59,9 +68,9 @@ const NavStyles = styled.nav`
         width: 100%;
         list-style-type: none;
         padding: 0;
-        transition-duration: 2s;
 
-        @media screen and (max-width: 780px) {
+        @media screen and (max-width: 800px) {
+            display: none;
             visibility: hidden;
             flex-direction: column;
             justify-content: center;
@@ -75,8 +84,10 @@ const NavStyles = styled.nav`
             z-index: 100;
             opacity: 0;
             transition-duration: .5s;
+            animation: .5s ${fadeIn} ease-out;
 
             &.active {
+                display: flex;
                 visibility: visible;
                 opacity: 1;
             }
