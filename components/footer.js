@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from "next/link";
 import Image from 'next/image';
 import Branding from '../public/L&L_LOGO_WHITE.png'
@@ -216,6 +217,14 @@ const SocialMediaWrapper = styled.div`
 `;
 
 export default function Footer({primaryColor}) {
+    const [inputs, setInputs] = useState({name: '', email: '', subject: '', message: ''});
+
+    const handleInputChange = (e) => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value
+        });
+    }
 
     const handleMouseEnter = (e) => {
         let button = e.target;
@@ -238,20 +247,21 @@ export default function Footer({primaryColor}) {
                         <h2 style={{color: primaryColor}}>Need More Info?</h2>
                         <p>Contact us about your needs, our availability, process and fees.</p>
                     </Header>
-                    <FormStyles>
+                    <FormStyles name="contact" action="/success" method="POST" data-netlify="true">
+                        <input type="hidden" name="form-name" value="contact" />
                         <label style={{color: primaryColor}}>Name</label>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" onChange={handleInputChange} value={inputs.name} required />
 
                         <label style={{color: primaryColor}}>Your Email</label>
-                        <input type="email" name="email" />
+                        <input type="email" name="email" onChange={handleInputChange} value={inputs.email} required />
 
                         <label style={{color: primaryColor}}>Subject</label>
-                        <input type="text" name="subject" />
+                        <input type="text" name="subject" onChange={handleInputChange} value={inputs.subject} required />
 
                         <label style={{color: primaryColor}}>Your Message</label>
-                        <textarea name="message" rows='10' />
+                        <textarea name="message" rows='10' onChange={handleInputChange} value={inputs.message} />
 
-                        <button style={{borderColor: primaryColor, backgroundColor: primaryColor, color: 'white'}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Submit</button>
+                        <button type="submit" style={{borderColor: primaryColor, backgroundColor: primaryColor, color: 'white'}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Submit</button>
                     </FormStyles>
                 </FlexContainer>
             </div>

@@ -88,10 +88,10 @@ function Layout({ children }) {
             <Head>
                 <title>Leading and Learning</title>
                 <link rel="icon" type="image/png" href="/L&L_FAVICON.png" />
-                <link rel="preload" href="/fonts/AvenirNextLTW02-Regular.woff2" as="font" crossOrigin="" />
-                <link rel="preload" href="/fonts/AvenirNextLTW02-Regular.woff" as="font" crossOrigin="" />
+                <link rel="preload" href="/fonts/AvenirNextLTW02-Regular.woff2" as="font" crossOrigin="true" />
+                <link rel="preload" href="/fonts/AvenirNextLTW02-Regular.woff" as="font" crossOrigin="true" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
                 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap" rel="stylesheet" />
             </Head>
             <Header />
