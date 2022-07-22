@@ -216,6 +216,12 @@ const SocialMediaWrapper = styled.div`
     }
 `;
 
+const encode = (data) => {
+    return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+}
+
 export default function Footer({primaryColor}) {
     const [inputs, setInputs] = useState({name: '', email: '', subject: '', message: ''});
 
@@ -225,6 +231,21 @@ export default function Footer({primaryColor}) {
             [e.target.name]: e.target.value
         });
     }
+
+    const handleFormSubmit = (e) => {
+        fetch("/L&L_FAVICON.png", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode({ "form-name": "contact", ...inputs })
+        })
+          .then(() => {
+            setInputs({name: '', email: '', subject: '', message: ''});
+            alert("Success!")
+        })
+          .catch(error => alert(error));
+  
+        e.preventDefault();
+    };
 
     const handleMouseEnter = (e) => {
         let button = e.target;
@@ -247,7 +268,7 @@ export default function Footer({primaryColor}) {
                         <h2 style={{color: primaryColor}}>Need More Info?</h2>
                         <p>Contact us about your needs, our availability, process and fees.</p>
                     </Header>
-                    <FormStyles name="contact" action="/success" method="POST" data-netlify="true">
+                    <FormStyles name="contact" data-netlify="true" onSubmit={handleFormSubmit}>
                         <input type="hidden" name="form-name" value="contact" />
                         <label style={{color: primaryColor}}>Name</label>
                         <input type="text" name="name" onChange={handleInputChange} value={inputs.name} required />
