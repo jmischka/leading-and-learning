@@ -11,7 +11,7 @@ const SuccessStyles = styled.div`
         margin: 0 0 25px;
         font-size: 4.3em;
         line-height: 1.5;
-        color: ${COLORS.testPrimary};
+        color: ${COLORS.primaryBlue};
         padding: 0 25px;
     }
 
@@ -27,7 +27,7 @@ function Success() {
             <main>
                 <SuccessStyles>
                     <h1>Thank you for your interest!</h1>
-                    <p>Form was successfully submitted. Someone from Leading & Learning will respond to your message as soon as possible.</p>
+                    <p>Someone from Leading & Learning will respond to your message as soon as possible.</p>
                 </SuccessStyles>
             </main>
             <AlternateFooter />

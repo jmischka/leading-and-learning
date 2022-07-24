@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from "next/link";
 import Image from 'next/image';
 import Branding from '../public/L&L_LOGO_WHITE.png'
@@ -216,13 +217,14 @@ const SocialMediaWrapper = styled.div`
     }
 `;
 
-const encode = (data) => {
+function encode(data) {
     return Object.keys(data)
-        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-        .join("&");
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&')
 }
 
 export default function Footer({primaryColor}) {
+    const router = useRouter();
     const [inputs, setInputs] = useState({name: '', email: '', subject: '', message: ''});
 
     const handleInputChange = (e) => {
@@ -233,19 +235,19 @@ export default function Footer({primaryColor}) {
     }
 
     const handleFormSubmit = (e) => {
-        fetch("/L&L_FAVICON.png", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode({ "form-name": "contact", ...inputs })
+        e.preventDefault()
+        const form = e.target
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode({
+            'form-name': form.getAttribute('name'),
+            ...inputs,
+          }),
         })
-          .then(() => {
-            setInputs({name: '', email: '', subject: '', message: ''});
-            alert("Success!")
-        })
-          .catch(error => alert(error));
-  
-        e.preventDefault();
-    };
+          .then(() => router.push('/success'))
+          .catch((error) => alert(error))
+    }
 
     const handleMouseEnter = (e) => {
         let button = e.target;
@@ -268,7 +270,7 @@ export default function Footer({primaryColor}) {
                         <h2 style={{color: primaryColor}}>Need More Info?</h2>
                         <p>Contact us about your needs, our availability, process and fees.</p>
                     </Header>
-                    <FormStyles name="contact" data-netlify="true" onSubmit={handleFormSubmit}>
+                    <FormStyles name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleFormSubmit}>
                         <input type="hidden" name="form-name" value="contact" />
                         <label style={{color: primaryColor}}>Name</label>
                         <input type="text" name="name" onChange={handleInputChange} value={inputs.name} required />
