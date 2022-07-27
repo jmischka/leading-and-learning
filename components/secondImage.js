@@ -28,6 +28,7 @@ const ImageStyles = styled.div`
       position: absolute;
       left: 50%;
       top: 50%;
+      width: 260px;
       transform: translate(-50%,-50%);
       padding: 16px 20px;
       background-color: transparent;
@@ -65,15 +66,13 @@ const ImageStyles = styled.div`
           color: ${COLORS.primaryBlue};
         }
       }
-  }
 
-  @media screen and (max-width: 780px) {
-    a {
-      display: block;
-      position: relative;
-      margin: 25px 0 0;
-      width: 260px;
-      transform: translate(-50%,0%);
+      @media screen and (max-width: 800px) {
+        width: 225px;
+
+        span.text {
+          font-size: 2em;
+        }
     }
   }
 `;

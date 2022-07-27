@@ -128,6 +128,40 @@ const NavStyles = styled.nav`
         }
     }
 
+    .mobile-x {
+        display: none;
+        position: absolute;
+        top: 35px;
+        right: 25px;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+
+        span {
+            display: block;
+            position: absolute;
+            width: 35px;
+            height: 5px;
+            left: 50%;
+            top: 50%;
+            padding: 0;
+            background-color: ${COLORS.primaryBlue};
+            border-radius: 3px;
+
+            &:nth-child(1) {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            &:nth-child(2) {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+        }
+
+        @media screen and (max-width: 780px) {
+            display: block;
+        }
+    }
+
     a.client-portal-link {
         display: block;
         position: absolute;
@@ -302,6 +336,10 @@ function Navigation() {
         setMobileActive(!mobileActive);
     }
 
+    const mobileClose = () => {
+        setMobileActive(!mobileActive);
+    }
+
     const handleNavLinkClick = () => {
         setTimeout(() => {
             setMobileActive(!mobileActive);
@@ -331,6 +369,10 @@ function Navigation() {
                     <li onClick={handleNavLinkClick}><Link href="/careers"><a>Careers</a></Link></li>
                     <li onClick={handleNavLinkClick}><Link href="/contact"><a>Contact</a></Link></li>
                     <li className='client-portal-link-mobile'><a target="_blank" rel="noreferrer" href="https://leadingandlearning.com/LL/user/login">Client Portal</a></li>
+                    <li className='mobile-x' onClick={mobileClose}>
+                        <span />
+                        <span />
+                    </li>
                 </ul>
                 <div className="mobile-menu-button" onClick={handleMobileClick}>
                     <span></span>

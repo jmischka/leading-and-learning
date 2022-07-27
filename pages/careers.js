@@ -60,6 +60,7 @@ const PageStyles = styled.div`
     }
 
     @media screen and (max-width: 800px) {
+        margin: 50px auto 0;
         h2 {
             margin: 0 0 0 0;
             font-size: 4.2em;
