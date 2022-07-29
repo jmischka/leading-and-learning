@@ -126,9 +126,7 @@ function Tutoring({tutoringData, tutoringBrochure}) {
     const offeringCopy = tutoringData[0].offeringCopy;
     const whyTitle = tutoringData[0].serviceWhyTitle;
     const whyText = tutoringData[0].whyCopy;
-    const testimonialBlock = tutoringData[0].serviceTestimonial[0].testimonial[0].children[0].text;
-    const testimonialByline = tutoringData[0].serviceTestimonial[0].byline;
-    const testimonialSchool = tutoringData[0].serviceTestimonial[0].schoolChoice;
+    const testimonialData = tutoringData[0].serviceTestimonial;
     const howTitle = tutoringData[0].serviceHowTitle;
     const howCopy = tutoringData[0].howItWorksCopy;
     const secondImage = tutoringData[0].secondImage.asset;
@@ -156,7 +154,7 @@ function Tutoring({tutoringData, tutoringBrochure}) {
                 </FlexWrapper>
               </OfferingStyles>
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={whyTitle} sectionText={whyText} />
-              <Testimonial serviceTitle={serviceTitle} testimonialBlock={testimonialBlock} testimonialByline={testimonialByline} schoolChoice={testimonialSchool} />
+              <Testimonial serviceTitle={serviceTitle} testimonialData={testimonialData} />
               <HowItWorks serviceTitle={serviceTitle} howTitle={howTitle} howCopy={howCopy} />
               <SecondImage image={secondImage} buttonText={buttonText} serviceTitle={serviceTitle} brochure={brochure} />
             </main>

@@ -17,9 +17,7 @@ function Shepherding({shepherdingData, shepherdingBrochure}) {
     const offeringText = shepherdingData[0].offeringCopy;
     const whyTitle = shepherdingData[0].serviceWhyTitle;
     const whyText = shepherdingData[0].whyCopy;
-    const testimonialBlock = shepherdingData[0].serviceTestimonial[0].testimonial[0].children[0].text;
-    const testimonialByline = shepherdingData[0].serviceTestimonial[0].byline;
-    const testimonialSchool = shepherdingData[0].serviceTestimonial[0].schoolChoice;
+    const testimonialData = shepherdingData[0].serviceTestimonial;
     const howTitle = shepherdingData[0].serviceHowTitle;
     const howCopy = shepherdingData[0].howItWorksCopy;
     const secondImage = shepherdingData[0].secondImage.asset;
@@ -33,7 +31,7 @@ function Shepherding({shepherdingData, shepherdingBrochure}) {
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={overviewTitle} sectionText={overviewText} />
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={offeringTitle} sectionText={offeringText} />
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={whyTitle} sectionText={whyText} />
-              <Testimonial serviceTitle={serviceTitle} testimonialBlock={testimonialBlock} testimonialByline={testimonialByline} schoolChoice={testimonialSchool} />
+              <Testimonial serviceTitle={serviceTitle} testimonialData={testimonialData} />
               <HowItWorks serviceTitle={serviceTitle} howTitle={howTitle} howCopy={howCopy} />
               <SecondImage image={secondImage} buttonText={buttonText} serviceTitle={serviceTitle} brochure={brochure} />
             </main>

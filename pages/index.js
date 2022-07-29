@@ -141,9 +141,7 @@ function Home({homeData}) {
   const servicesTitle = homeData[0].servicesOverviewTitle;
   const servicesText = homeData[0].servicesOverview[0].children[0].text;
   const serviceBlocks = homeData[0].servicesCopyBlock;
-  const testimonialBlock = homeData[0].testimonial[0].testimonial[0].children[0].text;
-  const testimonialByline = homeData[0].testimonial[0].byline;
-  const testimonialSchool = homeData[0].testimonial[0].schoolChoice;
+  const testimonialData = homeData[0].testimonial;
 
   return (
     <>
@@ -167,7 +165,7 @@ function Home({homeData}) {
             {serviceBlocks.map((block,idx) => <HomeServiceLink key={idx} image={block.blockImage.asset} title={block.serviceBlockTitle} textBlock={block.blockText} />)}
           </ul>
         </ServicesContent>
-        <Testimonial serviceTitle={'home'} testimonialBlock={testimonialBlock} testimonialByline={testimonialByline} schoolChoice={testimonialSchool} />
+        <Testimonial serviceTitle={'home'} testimonialData={testimonialData} />
       </main>
       <Footer primaryColor={COLORS.primaryBlue} />
     </>

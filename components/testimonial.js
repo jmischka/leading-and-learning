@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef, useCallback } from 'react';
 import Image from "next/image";
 import styled from "styled-components";
 import mainQuoteMark from "../assets/main-quotemark.png";
@@ -28,7 +29,32 @@ const TestimonialBackground = styled.div`
     opacity: .15;
 `;
 
+const TestimonialWindow = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+`;
+
+const TestimonialSlideTray = styled.div`
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.55, 0.01, 0.33, 1.18);
+`;
+
 const TestimonialContent = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+`;
+
+const TestimonialContentWrapper = styled.div`
     position: relative;
     margin: 0 auto;
     width: 100%;
@@ -100,7 +126,11 @@ const TestimonialDesc = styled.span`
     font-style: italic; 
 `;
 
-export default function Testimonial({serviceTitle, testimonialBlock, testimonialByline, schoolChoice}) {
+export default function Testimonial({serviceTitle, testimonialData}) {
+    const [slideShow, setSlideShow] = useState(false)
+    const slideShowLength = useRef(testimonialData.length);
+    const slideCount = useRef(0)
+
     const colorFinder = (serviceTitle) => {
         let servicetext = serviceTitle ? serviceTitle.toLowerCase().replace(/ /g, "") : null;
         if (servicetext === 'tutoring') {
@@ -150,16 +180,59 @@ export default function Testimonial({serviceTitle, testimonialBlock, testimonial
         }
     }
 
+    const slideRotater = useCallback(() => {
+        const slideTray = document.querySelector('.slidetray');
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        console.log(slides[slideCount.current].offsetLeft); 
+        if (slideCount.current < slideShowLength.current - 1) {
+            slideCount.current = slideCount.current + 1;
+            slideTray.style.left = -slides[slideCount.current].offsetLeft + 'px';
+            console.log(slides[slideCount.current].offsetLeft);
+        } else {
+            slideCount.current = 0;
+            slideTray.style.left = slides[slideCount.current].offsetLeft + 'px';
+            console.log(slides[slideCount.current].offsetLeft);
+        }
+    }, [slideCount]);
+
+    useEffect(() => {
+        const slideTray = document.querySelector('.slidetray');
+        slideTray.style.width = 100 * testimonialData.length + '%';
+    }, []);
+
+    useEffect(() => {
+        if (testimonialData.length > 1) {
+            setSlideShow(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (slideShow) {
+            const interval = setInterval(slideRotater, 4000);
+            return () => clearInterval(interval);
+        }
+    }, [slideShow]);
+
     return (
         <TestimonialWrapper>
             <TestimonialBackground style={{backgroundColor: colorFinder(serviceTitle)}} />
-            <TestimonialContent>
-                {quoteFinder(serviceTitle.toLowerCase().replace(/ /g, ""))}
-                <TestimonialText style={{color: colorFinder(serviceTitle)}}>{testimonialBlock}</TestimonialText>
-                <TestimonialAttr>{testimonialByline}</TestimonialAttr>
-                <TestimonialAttr>{schoolChoice}</TestimonialAttr>
-                <TestimonialDesc>Testimonial</TestimonialDesc>
-            </TestimonialContent>
+            <TestimonialWindow>
+                <TestimonialSlideTray className="slidetray">
+                    {testimonialData.map((data,idx) => {
+                        return (
+                            <TestimonialContent key={idx} className="slide">
+                                <TestimonialContentWrapper>
+                                    {quoteFinder(serviceTitle.toLowerCase().replace(/ /g, ""))}
+                                    <TestimonialText style={{color: colorFinder(serviceTitle)}}>{data.testimonial[0].children[0].text}</TestimonialText>
+                                    <TestimonialAttr>{data.byline}</TestimonialAttr>
+                                    <TestimonialAttr>{data.schoolChoice}</TestimonialAttr>
+                                    <TestimonialDesc>Testimonial</TestimonialDesc>
+                                </TestimonialContentWrapper>
+                            </TestimonialContent>
+                        )
+                    })}
+                </TestimonialSlideTray>
+            </TestimonialWindow>
         </TestimonialWrapper>
     )
 }

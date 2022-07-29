@@ -17,6 +17,7 @@ function Consulting({consultingData, consultingBrochure}) {
     const offeringCopy = consultingData[0].offeringCopy;
     const whyTitle = consultingData[0].serviceWhyTitle;
     const whytext = consultingData[0].whyCopy;
+    const testimonialData = consultingData[0].serviceTestimonial;
     const testimonialBlock = consultingData[0].serviceTestimonial[0].testimonial[0].children[0].text;
     const testimonialByline = consultingData[0].serviceTestimonial[0].byline;
     const testimonialSchool = consultingData[0].serviceTestimonial[0].schoolChoice;
@@ -33,7 +34,7 @@ function Consulting({consultingData, consultingBrochure}) {
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={overviewTitle} sectionText={overviewText} />
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={offeringTitle} sectionText={offeringCopy} />
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={whyTitle} sectionText={whytext} />
-                <Testimonial serviceTitle={serviceTitle} testimonialBlock={testimonialBlock} testimonialByline={testimonialByline} schoolChoice={testimonialSchool} />
+                <Testimonial serviceTitle={serviceTitle} testimonialData={testimonialData} />
                 <HowItWorks serviceTitle={serviceTitle} howTitle={howTitle} howCopy={howCopy} />
                 <SecondImage image={secondImage} buttonText={buttonText} serviceTitle={serviceTitle} brochure={brochure} />
             </main>

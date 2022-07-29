@@ -185,9 +185,10 @@ function About({aboutData}) {
     const introText = aboutData[0].introCopy;
     const purposeTitle = aboutData[0].purposeTitle;
     const purposeText = aboutData[0].purposeCopy;
-    const testimonialBlock = aboutData[0].testimonial[0].testimonial[0].children[0].text;
-    const testimonialByline = aboutData[0].testimonial[0].byline;
-    const testimonialSchool = aboutData[0].testimonial[0].schoolChoice;
+    const testimonialData = aboutData[0].testimonial;
+    // const testimonialBlock = aboutData[0].testimonial[0].testimonial[0].children[0].text;
+    // const testimonialByline = aboutData[0].testimonial[0].byline;
+    // const testimonialSchool = aboutData[0].testimonial[0].schoolChoice;
     const teamTitle = aboutData[0].teamIntroTitle;
     const teamCopy = aboutData[0].teamIntroCopy
 
@@ -217,7 +218,7 @@ function About({aboutData}) {
                         })}
                     </ul>
                 </PurposeStyles>
-                <Testimonial serviceTitle={pageTitle} testimonialBlock={testimonialBlock} testimonialByline={testimonialByline} schoolChoice={testimonialSchool} />
+                <Testimonial serviceTitle={pageTitle} testimonialData={testimonialData} />
                 <TeamStyles>
                     <FlexWrapper>
                         <div>

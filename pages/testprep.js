@@ -150,9 +150,7 @@ function Testprep({testprepData, testprepBrochure}) {
     const overviewText = testprepData[0].serviceOverview;
     const whyTitle = testprepData[0].serviceWhyTitle;
     const whyText = testprepData[0].whyCopy;
-    const testimonialBlock = testprepData[0].serviceTestimonial[0].testimonial[0].children[0].text;
-    const testimonialByline = testprepData[0].serviceTestimonial[0].byline;
-    const testimonialSchool = testprepData[0].serviceTestimonial[0].schoolChoice;
+    const testimonialData = testprepData[0].serviceTestimonial;
     const howTitle = testprepData[0].serviceHowTitle;
     const howCopy = testprepData[0].howItWorksCopy;
     const secondImage = testprepData[0].secondImage.asset;
@@ -182,7 +180,7 @@ function Testprep({testprepData, testprepBrochure}) {
                     </FlexWrapper>
                 </OverviewStyles>
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={whyTitle} sectionText={whyText} />
-                <Testimonial serviceTitle={serviceTitle} testimonialBlock={testimonialBlock} testimonialByline={testimonialByline} schoolChoice={testimonialSchool} />
+                <Testimonial serviceTitle={serviceTitle} testimonialData={testimonialData} />
                 <HowItWorks serviceTitle={serviceTitle} howTitle={howTitle} howCopy={howCopy} />
                 <SecondImage image={secondImage} buttonText={buttonText} serviceTitle={serviceTitle} brochure={brochure} />
             </main>
