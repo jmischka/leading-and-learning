@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import client from "../client";
 import { COLORS } from "../styles/colors";
 import styled from "styled-components";
@@ -142,6 +144,31 @@ const FormStyles = styled.form`
 
 function Contact({contactData}) {
     const contactText = contactData[0].copy[0].children[0].text;
+    const [inputs, setInputs] = useState({name: '', email: '', subject: '', message: ''});
+    const router = useRouter();
+
+    const handleInputChange = (e) => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        const form = e.target
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode({
+            'form-name': form.getAttribute('name'),
+            ...inputs,
+          }),
+        })
+          .then(() => router.push('/success'))
+          .catch((error) => alert(error))
+    }
+
     return (
         <>
             <main>
@@ -158,16 +185,17 @@ function Contact({contactData}) {
                             <p>{contactText}</p>
                         </div>
                         <div>
-                            <FormStyles>
+                            <FormStyles name="contact-page" method="post" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleFormSubmit}>
+                                <input type="hidden" name="form-name" value="contact-page" />
                                 <label>Name</label>
-                                <input name="name" type="text"></input>
+                                <input type="text" name="name" onChange={handleInputChange} value={inputs.name} required />
                                 <label>Your Email</label>
-                                <input name="email" type="text"></input>
+                                <input type="email" name="email" onChange={handleInputChange} value={inputs.email} required />
                                 <label>Subject</label>
-                                <input name="subject" type="text"></input>
+                                <input type="text" name="subject" onChange={handleInputChange} value={inputs.subject} required />
                                 <label>Your Message</label>
-                                <textarea name="message" rows='10' />
-                                <button>Submit</button>
+                                <textarea name="message" rows='10' onChange={handleInputChange} value={inputs.message} />
+                                <button type="submit">Submit</button>
                             </FormStyles>
                         </div>
                     </FlexWrapper>

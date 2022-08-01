@@ -39,6 +39,7 @@ const TestimonialWindow = styled.div`
 const TestimonialSlideTray = styled.div`
     position: relative;
     margin: 0;
+    left: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
