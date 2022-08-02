@@ -186,9 +186,6 @@ function About({aboutData}) {
     const purposeTitle = aboutData[0].purposeTitle;
     const purposeText = aboutData[0].purposeCopy;
     const testimonialData = aboutData[0].testimonial;
-    // const testimonialBlock = aboutData[0].testimonial[0].testimonial[0].children[0].text;
-    // const testimonialByline = aboutData[0].testimonial[0].byline;
-    // const testimonialSchool = aboutData[0].testimonial[0].schoolChoice;
     const teamTitle = aboutData[0].teamIntroTitle;
     const teamCopy = aboutData[0].teamIntroCopy
 
@@ -245,6 +242,7 @@ export async function getStaticProps() {
       props: {
         aboutData,
       },
+      revalidate: 10, // In seconds
     }
   }
 
