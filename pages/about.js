@@ -242,7 +242,7 @@ export async function getStaticProps() {
       props: {
         aboutData,
       },
-      revalidate: 10, // In seconds
+      revalidate: 60, // In seconds
     }
   }
 
