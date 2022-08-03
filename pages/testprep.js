@@ -197,6 +197,7 @@ export async function getStaticProps() {
         testprepData,
         testprepBrochure,
       },
+      revalidate: 60, // In seconds
     }
 }
 

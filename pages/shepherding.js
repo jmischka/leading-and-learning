@@ -48,6 +48,7 @@ export async function getStaticProps() {
         shepherdingData,
         shepherdingBrochure,
       },
+      revalidate: 60, // In seconds
     }
   }
 

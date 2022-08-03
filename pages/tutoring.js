@@ -171,6 +171,7 @@ export async function getStaticProps() {
         tutoringData,
         tutoringBrochure,
       },
+      revalidate: 60, // In seconds
     }
   }
 

@@ -51,6 +51,7 @@ export async function getStaticProps() {
         consultingData,
         consultingBrochure,
       },
+      revalidate: 60, // In seconds
     }
 }
 
