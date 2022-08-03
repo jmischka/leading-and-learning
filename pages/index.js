@@ -139,7 +139,7 @@ function Home({homeData}) {
   const overviewTitle = homeData[0].companyOverviewTitle;
   const overviewText = homeData[0].companyOverview[0].children[0].text;
   const servicesTitle = homeData[0].servicesOverviewTitle;
-  const servicesText = homeData[0].servicesOverview ? homeData[0].servicesOverview[0].children[0].text : null;
+  const servicesText = homeData[0].servicesOverview[0].children[0].text;
   const serviceBlocks = homeData[0].servicesCopyBlock;
   const testimonialData = homeData[0].testimonial;
 
@@ -159,7 +159,7 @@ function Home({homeData}) {
         <ServicesContent>
           <div className="services-header">
             <h2>{servicesTitle}</h2>
-            {servicesText ? <p>{servicesText}</p> : null}
+            <p>{servicesText}</p>
           </div>
           <ul className="services-list">
             {serviceBlocks.map((block,idx) => <HomeServiceLink key={idx} image={block.blockImage.asset} title={block.serviceBlockTitle} textBlock={block.blockText} />)}
