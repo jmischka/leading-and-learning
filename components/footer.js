@@ -237,7 +237,7 @@ export default function Footer({primaryColor}) {
     const handleFormSubmit = (e) => {
         e.preventDefault()
         const form = e.target
-        fetch('/', {
+        fetch('/L&L_FAVICON.png', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: encode({

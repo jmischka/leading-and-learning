@@ -75,6 +75,7 @@ const FlexWrapper = styled.div`
       @media screen and (max-width: 800px) {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         width: 100%;
 
         &:nth-child(odd) {
@@ -102,15 +103,14 @@ const FlexWrapper = styled.div`
 
     @media screen and (max-width: 800px) {
       width: 100%;
-      padding: 25px 25px 25px;
+      padding: 12px 25px 25px;
 
       h3 {
-        width: 50%;
+        width: 100%;
       }
 
       span {
-        width: 50%;
-        padding: 0 12px;
+        width: 100%;
       }
     }
   }

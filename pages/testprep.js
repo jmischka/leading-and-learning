@@ -95,7 +95,7 @@ const OverviewTable = styled.div`
         @media screen and (max-width: 800px) {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            flex-wrap: wrap;
             width: 100%;
 
             &:nth-child(odd) {
@@ -123,14 +123,14 @@ const OverviewTable = styled.div`
 
     li {
         margin: 0;
-        padding: 0;
+        padding: 0 0 0 0;
         font-size: 1.6em;
     }
 
     @media screen and (max-width: 800px) {
         h3 {
             margin: 0 0 0;
-            width: 45%;
+            width: 100%;
         }
 
         ul {
@@ -138,7 +138,11 @@ const OverviewTable = styled.div`
             flex-direction: row;
             flex-wrap: wrap;
             margin: 0 0 25px;
-            width: 45%;
+            width: 100%;
+        }
+
+        li {
+            padding: 0 9px 0 0
         }
     }
 `;
