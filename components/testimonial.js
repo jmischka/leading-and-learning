@@ -97,6 +97,7 @@ const TestimonialText = styled.span`
 
     @media screen and (max-width: 1200px) {
         font-size: 3.6em;
+        text-align: center;
     }
 
     @media screen and (max-width: 800px) {
