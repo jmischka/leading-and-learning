@@ -27,7 +27,7 @@ const MainImage = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    margin: 0 0 0 0;
+    margin: 0 0 75px 0;
   }
 `;
 

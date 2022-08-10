@@ -184,16 +184,13 @@ export default function Testimonial({serviceTitle, testimonialData}) {
 
     const slideRotater = useCallback(() => {
         const slideTray = document.querySelector('.slidetray');
-        const slides = Array.from(document.querySelectorAll('.slide'));
-        console.log(slides[slideCount.current].offsetLeft); 
+        const slides = Array.from(document.querySelectorAll('.slide')); 
         if (slideCount.current < slideShowLength.current - 1) {
             slideCount.current = slideCount.current + 1;
             slideTray.style.left = -slides[slideCount.current].offsetLeft + 'px';
-            console.log(slides[slideCount.current].offsetLeft);
         } else {
             slideCount.current = 0;
             slideTray.style.left = slides[slideCount.current].offsetLeft + 'px';
-            console.log(slides[slideCount.current].offsetLeft);
         }
     }, [slideCount]);
 
