@@ -29,7 +29,9 @@ const OverviewStyles = styled.div`
         }
     }
 
-    @media screen and (max-width: 780px) {
+    @media screen and (max-width: 800px) {
+        margin: -25px auto 0;
+
         h2 {
             margin: 0 0 0 0;
             font-size: 3em;

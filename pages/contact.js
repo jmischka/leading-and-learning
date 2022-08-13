@@ -142,6 +142,12 @@ const FormStyles = styled.form`
     }
 `
 
+function encode(data) {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&')
+}
+
 function Contact({contactData}) {
     const contactText = contactData[0].copy[0].children[0].text;
     const [inputs, setInputs] = useState({name: '', email: '', subject: '', message: ''});
