@@ -161,7 +161,7 @@ function Home({homeData}) {
     <>
       <main>
         <VideoWrapper>
-            <video src="/homeVideo.mp4" ref={ vidRef } autoPlay loop />
+            <video src="/homeVideo.mp4" ref={ vidRef } autoPlay loop muted />
         </VideoWrapper>
         <HeaderContent>
           <h2>{overviewTitle}</h2>
