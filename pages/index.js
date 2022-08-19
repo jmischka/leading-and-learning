@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import client from "../client";
 import Footer from "../components/footer";
 import { COLORS } from "../styles/colors";
@@ -150,11 +151,17 @@ function Home({homeData}) {
   const serviceBlocks = homeData[0].servicesCopyBlock;
   const testimonialData = homeData[0].testimonial;
 
+  const vidRef = useRef();
+
+  useEffect(() => {
+    vidRef.current.play();
+  }, []);
+
   return (
     <>
       <main>
         <VideoWrapper>
-            <video src="/homeVideo.mp4" autoPlay loop />
+            <video src="/homeVideo.mp4" ref={ vidRef } autoPlay loop />
         </VideoWrapper>
         <HeaderContent>
           <h2>{overviewTitle}</h2>
