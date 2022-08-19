@@ -39,7 +39,7 @@ export default function HeroImage({image}) {
     return (
         <MainImage>
             <figure>
-                <Image src={urlFor(image).url()} alt="Page Image" layout="fill" objectFit="cover" objectPosition="50% 50%" priority />
+                <Image src={urlFor(image).url()} alt="Page Image" layout="fill" objectFit="cover" objectPosition="50% 50%" unoptimized={true} priority />
             </figure>
         </MainImage>
     )
