@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import client from "../client";
 import Footer from "../components/footer";
 import styled from "styled-components";
@@ -149,6 +150,20 @@ const OverviewTable = styled.div`
     }
 `;
 
+const VideoWrapper = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    video {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+`;
+
 function Testprep({testprepData, testprepBrochure}) {
     const serviceTitle = testprepData[0].servicesTitle;
     const mainImage = testprepData[0].mainImage.asset;
@@ -163,10 +178,25 @@ function Testprep({testprepData, testprepBrochure}) {
     const buttonText = testprepData[0].servicesButtonText;
     const brochure = testprepBrochure[0].manuscriptURL;
 
+    const [isMobile, setIsMobile] = useState(true);
+    
+    useEffect(() => {
+        let windowWidth = window.innerWidth;
+        if (windowWidth > 800) {
+            setIsMobile(false);
+        }
+    }, []);
+
     return (
         <>
             <main>
-                <HeroImage image={mainImage} />
+                {isMobile ? (
+                    <HeroImage image={mainImage} />
+                ) : (
+                    <VideoWrapper>
+                        <video src="/testprepVideo.mp4" autoPlay loop muted />
+                    </VideoWrapper>
+                )}
                 <OverviewStyles>
                     <FlexWrapper>
                         <div><h2>{overviewTitle}</h2></div>

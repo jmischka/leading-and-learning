@@ -206,7 +206,7 @@ function About({aboutData}) {
         <>
             <main>
                 <VideoWrapper>
-                    <video src="/ABOUT2.mp4" autoPlay loop />
+                    <video src="/ABOUT2.mp4" autoPlay loop muted />
                 </VideoWrapper>
                 <IntroStyles>
                     <FlexWrapper>

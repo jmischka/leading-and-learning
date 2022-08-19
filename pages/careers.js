@@ -90,7 +90,7 @@ function Careers({careersData}) {
         <>
             <main>
                 <VideoWrapper>
-                    <video src="/careerVideo.mp4" autoPlay loop />
+                    <video src="/careerVideo.mp4" autoPlay loop muted />
                 </VideoWrapper>
                 <PageStyles>
                     <h2>{title}</h2>

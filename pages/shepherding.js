@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import client from "../client";
+import styled from "styled-components";
 import Footer from "../components/footer";
 import { COLORS } from "../styles/colors";
 import Testimonial from "../components/testimonial";
@@ -7,6 +9,19 @@ import HeroImage from "../components/heroImage";
 import SecondImage from "../components/secondImage";
 import ServiceSectionContent from "../components/serviceSectionContent";
 
+const VideoWrapper = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    video {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+`;
 
 function Shepherding({shepherdingData, shepherdingBrochure}) {
     const serviceTitle = shepherdingData[0].servicesTitle;
@@ -24,10 +39,25 @@ function Shepherding({shepherdingData, shepherdingBrochure}) {
     const buttonText = shepherdingData[0].servicesButtonText;
     const brochure = shepherdingBrochure[0].manuscriptURL;
 
+    const [isMobile, setIsMobile] = useState(true);
+    
+    useEffect(() => {
+        let windowWidth = window.innerWidth;
+        if (windowWidth > 800) {
+            setIsMobile(false);
+        }
+    }, []);
+
     return (
         <>
             <main>
-              <HeroImage image={mainImage} />
+              {isMobile ? (
+                  <HeroImage image={mainImage} />
+              ) : (
+                  <VideoWrapper>
+                      <video src="/shepVideo.mp4" autoPlay loop muted />
+                  </VideoWrapper>
+              )}
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={overviewTitle} sectionText={overviewText} />
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={offeringTitle} sectionText={offeringText} />
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={whyTitle} sectionText={whyText} />

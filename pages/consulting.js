@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import client from "../client";
+import styled from "styled-components";
 import Footer from "../components/footer";
 import { COLORS } from "../styles/colors";
 import Testimonial from "../components/testimonial";
@@ -7,6 +9,19 @@ import HeroImage from "../components/heroImage";
 import SecondImage from "../components/secondImage";
 import ServiceSectionContent from "../components/serviceSectionContent";
 
+const VideoWrapper = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    video {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+`;
 
 function Consulting({consultingData, consultingBrochure}) {
     const serviceTitle = consultingData[0].servicesTitle;
@@ -18,19 +33,31 @@ function Consulting({consultingData, consultingBrochure}) {
     const whyTitle = consultingData[0].serviceWhyTitle;
     const whytext = consultingData[0].whyCopy;
     const testimonialData = consultingData[0].serviceTestimonial;
-    const testimonialBlock = consultingData[0].serviceTestimonial[0].testimonial[0].children[0].text;
-    const testimonialByline = consultingData[0].serviceTestimonial[0].byline;
-    const testimonialSchool = consultingData[0].serviceTestimonial[0].schoolChoice;
     const howTitle = consultingData[0].serviceHowTitle;
     const howCopy = consultingData[0].howItWorksCopy;
     const secondImage = consultingData[0].secondImage.asset;
     const buttonText = consultingData[0].servicesButtonText;
     const brochure = consultingBrochure[0].manuscriptURL;
 
+    const [isMobile, setIsMobile] = useState(true);
+    
+    useEffect(() => {
+        let windowWidth = window.innerWidth;
+        if (windowWidth > 800) {
+            setIsMobile(false);
+        }
+    }, []);
+
     return (
         <>
             <main>
-                <HeroImage image={mainImage} />
+                {isMobile ? (
+                    <HeroImage image={mainImage} />
+                ) : (
+                    <VideoWrapper>
+                        <video src="/educationVideo.mp4" autoPlay loop muted />
+                    </VideoWrapper>
+                )}
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={overviewTitle} sectionText={overviewText} />
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={offeringTitle} sectionText={offeringCopy} />
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={whyTitle} sectionText={whytext} />
