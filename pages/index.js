@@ -1,6 +1,4 @@
 import client from "../client";
-import imageUrlBuilder from '@sanity/image-url';
-import Image from 'next/image';
 import Footer from "../components/footer";
 import { COLORS } from "../styles/colors";
 import styled from "styled-components";
@@ -130,12 +128,21 @@ const ServicesContent = styled.div`
   }
 `;
 
-function urlFor (source) {
-  return imageUrlBuilder(client).image(source)
-}
+const VideoWrapper = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    video {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+`;
 
 function Home({homeData}) {
-  const mainImage = homeData[0].mainImage.asset;
   const overviewTitle = homeData[0].companyOverviewTitle;
   const overviewText = homeData[0].companyOverview[0].children[0].text;
   const servicesTitle = homeData[0].servicesOverviewTitle;
@@ -146,11 +153,9 @@ function Home({homeData}) {
   return (
     <>
       <main>
-        <MainImage>
-          <div>
-            <Image src={urlFor(mainImage).url()} alt="Page Image" layout="fill" objectFit="cover" objectPosition="50% 50%" priority />
-          </div>
-        </MainImage>
+        <VideoWrapper>
+            <video src="/homeVideo.mp4" autoPlay loop />
+        </VideoWrapper>
         <HeaderContent>
           <h2>{overviewTitle}</h2>
           <p>{overviewText}</p>

@@ -1,5 +1,4 @@
 import client from "../client";
-import HeroImage from "../components/heroImage";
 import { COLORS } from "../styles/colors";
 import styled from 'styled-components';
 import AlternateFooter from "../components/alternateFooter";
@@ -68,8 +67,21 @@ const PageStyles = styled.div`
     }
 `;
 
+const VideoWrapper = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    video {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+`;
+
 function Careers({careersData}) {
-    const mainImage = careersData[0].mainImage.asset;
     const title = careersData[0].introTitle;
     const copyBlocks = careersData[0].introCopy;
     const buttonText = careersData[0].emailButtonText;
@@ -77,7 +89,9 @@ function Careers({careersData}) {
     return (
         <>
             <main>
-                <HeroImage image={mainImage} />
+                <VideoWrapper>
+                    <video src="/careerVideo.mp4" autoPlay loop />
+                </VideoWrapper>
                 <PageStyles>
                     <h2>{title}</h2>
                     {copyBlocks.map((copy,idx) => {

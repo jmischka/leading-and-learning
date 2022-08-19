@@ -178,9 +178,22 @@ const FlexWrapper = styled.div`
     }
 `;
 
+const VideoWrapper = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    video {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+`;
+
 function About({aboutData}) {
     const pageTitle = aboutData[0].pageTitle
-    const mainImage = aboutData[0].mainImage.asset;
     const introTitle = aboutData[0].intro;
     const introText = aboutData[0].introCopy;
     const purposeTitle = aboutData[0].purposeTitle;
@@ -192,7 +205,9 @@ function About({aboutData}) {
     return (
         <>
             <main>
-                <HeroImage image={mainImage} />
+                <VideoWrapper>
+                    <video src="/ABOUT2.mp4" autoPlay loop />
+                </VideoWrapper>
                 <IntroStyles>
                     <FlexWrapper>
                         <div><h2>{introTitle}</h2></div>
