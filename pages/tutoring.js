@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import client from "../client";
 import Footer from "../components/footer";
 import { COLORS } from "../styles/colors";
@@ -118,6 +119,19 @@ const FlexWrapper = styled.div`
   }
 `;
 
+const VideoWrapper = styled.div`
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: auto;
+
+    video {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: auto;
+    }
+`;
 
 function Tutoring({tutoringData, tutoringBrochure}) {
     const serviceTitle = tutoringData[0].servicesTitle;
@@ -135,10 +149,25 @@ function Tutoring({tutoringData, tutoringBrochure}) {
     const buttonText = tutoringData[0].servicesButtonText;
     const brochure = tutoringBrochure[0].manuscriptURL;
 
+    const [isMobile, setIsMobile] = useState(true);
+    
+    useEffect(() => {
+        let windowWidth = window.innerWidth;
+        if (windowWidth > 800) {
+            setIsMobile(false);
+        }
+    }, []);
+
     return (
         <>
             <main>
-              <HeroImage image={mainImage} />
+              {isMobile ? (
+                  <HeroImage image={mainImage} />
+              ) : (
+                  <VideoWrapper>
+                      <video src="/tutoringVideo.mp4" autoPlay loop muted />
+                  </VideoWrapper>
+              )}
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={overviewTitle} sectionText={overviewText} />
               <OfferingStyles>
                 <FlexWrapper>

@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import HeroImage from "../components/heroImage";
 import client from "../client";
 import Footer from "../components/footer";
 import { COLORS } from "../styles/colors";
@@ -144,6 +145,7 @@ const VideoWrapper = styled.div`
 `;
 
 function Home({homeData}) {
+  const mainImage = homeData[0].mainImage.asset;
   const overviewTitle = homeData[0].companyOverviewTitle;
   const overviewText = homeData[0].companyOverview[0].children[0].text;
   const servicesTitle = homeData[0].servicesOverviewTitle;
@@ -152,17 +154,31 @@ function Home({homeData}) {
   const testimonialData = homeData[0].testimonial;
 
   const vidRef = useRef();
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    vidRef.current.play();
+    let windowWidth = window.innerWidth;
+    if (windowWidth > 800) {
+        setIsMobile(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) {
+      vidRef.current.play();
+    }   
   }, []);
 
   return (
     <>
       <main>
-        <VideoWrapper>
-            <video src="/homeVideo.mp4" ref={ vidRef } autoPlay loop muted />
-        </VideoWrapper>
+        {isMobile ? (
+            <HeroImage image={mainImage} />
+        ) : (
+            <VideoWrapper>
+                <video src="/homeVideo.mp4" ref={ vidRef } autoPlay loop muted />
+            </VideoWrapper>
+        )}
         <HeaderContent>
           <h2>{overviewTitle}</h2>
           <p>{overviewText}</p>

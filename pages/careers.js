@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import client from "../client";
+import HeroImage from "../components/heroImage";
 import { COLORS } from "../styles/colors";
 import styled from 'styled-components';
 import AlternateFooter from "../components/alternateFooter";
@@ -83,15 +85,29 @@ const VideoWrapper = styled.div`
 
 function Careers({careersData}) {
     const title = careersData[0].introTitle;
+    const mainImage = careersData[0].mainImage.asset;
     const copyBlocks = careersData[0].introCopy;
     const buttonText = careersData[0].emailButtonText;
+
+    const [isMobile, setIsMobile] = useState(true);
+    
+    useEffect(() => {
+        let windowWidth = window.innerWidth;
+        if (windowWidth > 800) {
+            setIsMobile(false);
+        }
+    }, []);
 
     return (
         <>
             <main>
-                <VideoWrapper>
-                    <video src="/careerVideo.mp4" autoPlay loop muted />
-                </VideoWrapper>
+                {isMobile ? (
+                    <HeroImage image={mainImage} />
+                ) : (
+                    <VideoWrapper>
+                        <video src="/careerVideo.mp4" autoPlay loop muted />
+                    </VideoWrapper>
+                )}
                 <PageStyles>
                     <h2>{title}</h2>
                     {copyBlocks.map((copy,idx) => {

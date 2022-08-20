@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import client from "../client";
 import Footer from "../components/footer";
 import Testimonial from "../components/testimonial";
@@ -194,6 +195,7 @@ const VideoWrapper = styled.div`
 
 function About({aboutData}) {
     const pageTitle = aboutData[0].pageTitle
+    const mainImage = aboutData[0].mainImage.asset;
     const introTitle = aboutData[0].intro;
     const introText = aboutData[0].introCopy;
     const purposeTitle = aboutData[0].purposeTitle;
@@ -202,12 +204,25 @@ function About({aboutData}) {
     const teamTitle = aboutData[0].teamIntroTitle;
     const teamCopy = aboutData[0].teamIntroCopy
 
+    const [isMobile, setIsMobile] = useState(true);
+    
+    useEffect(() => {
+        let windowWidth = window.innerWidth;
+        if (windowWidth > 800) {
+            setIsMobile(false);
+        }
+    }, []);
+
     return (
         <>
             <main>
-                <VideoWrapper>
-                    <video src="/ABOUT2.mp4" autoPlay loop muted />
-                </VideoWrapper>
+                {isMobile ? (
+                    <HeroImage image={mainImage} />
+                ) : (
+                    <VideoWrapper>
+                        <video src="/ABOUT2.mp4" autoPlay loop muted />
+                    </VideoWrapper>
+                )}
                 <IntroStyles>
                     <FlexWrapper>
                         <div><h2>{introTitle}</h2></div>
