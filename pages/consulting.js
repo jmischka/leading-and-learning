@@ -55,7 +55,7 @@ function Consulting({consultingData, consultingBrochure}) {
                     <HeroImage image={mainImage} />
                 ) : (
                     <VideoWrapper>
-                        <video src="/educationVideo.mp4" autoPlay loop muted />
+                        <video src="/educationVideo2.mp4" autoPlay loop muted />
                     </VideoWrapper>
                 )}
                 <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={overviewTitle} sectionText={overviewText} />

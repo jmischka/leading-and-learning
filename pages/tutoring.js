@@ -165,7 +165,7 @@ function Tutoring({tutoringData, tutoringBrochure}) {
                   <HeroImage image={mainImage} />
               ) : (
                   <VideoWrapper>
-                      <video src="/tutoringVideo.mp4" autoPlay loop muted />
+                      <video src="/tutoringVideo2.mp4" autoPlay loop muted />
                   </VideoWrapper>
               )}
               <ServiceSectionContent serviceTitle={serviceTitle} sectionTitle={overviewTitle} sectionText={overviewText} />

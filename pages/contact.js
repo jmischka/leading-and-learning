@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import client from "../client";
 import { COLORS } from "../styles/colors";
 import styled from "styled-components";
-import QuestionMarks from '../assets/Questionmarks.png'
+import QuestionMarks from '../assets/Questionmarks.png';
+import contactGif from '../assets/contact.gif';
 import Image from "next/image";
 import AlternateFooter from "../components/alternateFooter";
 
@@ -31,10 +32,10 @@ const ImageStyles = styled.div`
         display: block;
         position: absolute;
         margin: 0;
-        left: 25px;
+        left: -185px;
         bottom: 0;
-        width: 400px;
-        height: 200px; 
+        width: 850px;
+        height: 250px; 
     }
 
     @media screen and (max-width: 800px) {
@@ -181,7 +182,7 @@ function Contact({contactData}) {
                 <Background />
                 <ImageStyles>
                     <figure>
-                        <Image src={QuestionMarks} alt="Graphic" placeholder="blur" />
+                        <Image src={contactGif} alt="Graphic" unoptimized={true} />
                     </figure>
                 </ImageStyles>
                 <ContactStyles>
