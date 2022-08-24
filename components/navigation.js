@@ -368,7 +368,7 @@ function Navigation() {
                     <li onClick={handleNavLinkClick}><Link href="/blog"><a>Blog</a></Link></li>
                     <li onClick={handleNavLinkClick}><Link href="/careers"><a>Careers</a></Link></li>
                     <li onClick={handleNavLinkClick}><Link href="/contact"><a>Contact</a></Link></li>
-                    <li className='client-portal-link-mobile'><a target="_blank" rel="noreferrer" href="https://leadingandlearning.com/LL/user/login">Client Portal</a></li>
+                    <li className='client-portal-link-mobile'><a target="_blank" rel="noreferrer" href="https://portal.leadingandlearning.com/">Client Portal</a></li>
                     <li className='mobile-x' onClick={mobileClose}>
                         <span />
                         <span />
@@ -380,7 +380,7 @@ function Navigation() {
                     <span></span>
                 </div>
             </div>
-            <a className='client-portal-link' target="_blank" rel="noreferrer" href="https://leadingandlearning.com/LL/user/login">Client Portal</a>
+            <a className='client-portal-link' target="_blank" rel="noreferrer" href="https://portal.leadingandlearning.com/">Client Portal</a>
         </NavStyles>
     )
 }

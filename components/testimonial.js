@@ -207,7 +207,7 @@ export default function Testimonial({serviceTitle, testimonialData}) {
 
     useEffect(() => {
         if (slideShow) {
-            const interval = setInterval(slideRotater, 4000);
+            const interval = setInterval(slideRotater, 6000);
             return () => clearInterval(interval);
         }
     }, [slideShow]);
