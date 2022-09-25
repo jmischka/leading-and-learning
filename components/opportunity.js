@@ -12,13 +12,11 @@ const OpportunityStyles = styled.div`
     h3 {
         margin: 0;
         font-size: 2.6em;
-        color: ${COLORS.primaryBlue};
     }
 
     h4 {
         margin: 1em 0 0;
         font-size: 2.2em;
-        color: ${COLORS.primaryBlue};
     }
 
     p {
@@ -29,9 +27,11 @@ const OpportunityStyles = styled.div`
         position: relative;
         display: block;
         margin: 25px 0 0;
+        width: 120px;
         font-size: 1.6em;
-        text-decoration: underline;
-        color: ${COLORS.primaryBlue};
+        padding: 12px;
+        border: 1px solid;
+        text-align: center;
         cursor: pointer;
     }
 
@@ -42,8 +42,6 @@ const OpportunityStyles = styled.div`
 
 const OpportunityCard = styled.div`
     margin: 0;
-    padding: 25px;
-    border: 1px solid ${COLORS.primaryBlue}
 `;
 
 const HideWrapper = styled.div`
@@ -78,7 +76,6 @@ const OpportunityDetails = styled.div`
         text-transform: none;
         padding: 0;
         background-color: none;
-        color: ${COLORS.primaryBlue};
         border: none;
     }
 
@@ -103,11 +100,21 @@ export default function Opportunity({jobTitle, jobDescription, jobBenefits, jobR
             targetElement.style.height = 0;
         }
     }
+
+    const colorIndex = (index) => {
+        if (index === 0) {
+            return `${COLORS.tutorPrimary}`;
+        } else if (index === 1) {
+            return `${COLORS.shepherdPrimary}`;
+        } else {
+            return `${COLORS.primaryBlue}`;
+        }  
+    }
     
     return (
         <OpportunityStyles>
             <OpportunityCard>
-                <h3>{jobTitle}</h3>
+                <h3 style={{color: colorIndex(index)}}>{jobTitle}</h3>
                 {jobDescription.map((description,idx) => {
                     return (
                         <p key={idx}>{description.children.map((child,idx) => <span key={idx} className={child.marks.length ? child.marks.map(mark => mark).join(' ') : null}>{child.text}</span>)}</p>
@@ -116,7 +123,7 @@ export default function Opportunity({jobTitle, jobDescription, jobBenefits, jobR
 
                 <HideWrapper>
                     <OpportunityDetails className={`jobdetails-${index}`}>
-                        <h4>Benefits:</h4>
+                        <h4 style={{color: colorIndex(index)}}>Benefits:</h4>
                         {jobBenefits.map((benefit,idx) => {
                             if (benefit.hasOwnProperty('listItem')) {
                                 return (
@@ -128,7 +135,7 @@ export default function Opportunity({jobTitle, jobDescription, jobBenefits, jobR
                                 )
                             } 
                         })}
-                        <h4>Requirements:</h4>
+                        <h4 style={{color: colorIndex(index)}}>Requirements:</h4>
                         {jobRequirements.map((requirement,idx) => {
                             if (requirement.hasOwnProperty('listItem')) {
                                 return (
@@ -140,13 +147,13 @@ export default function Opportunity({jobTitle, jobDescription, jobBenefits, jobR
                                 )
                             } 
                         })}
-                        <h4>How To Apply:</h4>
-                        <p>Link to application: <a className='application-link' target="_blank" rel="noreferrer" href={jobApply}>Apply Here</a></p>
+                        <h4 style={{color: colorIndex(index)}}>How To Apply:</h4>
+                        <p>Link to application: <a style={{color: colorIndex(index)}} className='application-link' target="_blank" rel="noreferrer" href={jobApply}>Apply Here</a></p>
                         <span className='disclaimer'>You will be asked to provide a copy of your official transcripts.</span>
                     </OpportunityDetails>
                 </HideWrapper>
 
-                <span className='expand-button' onClick={handleExpandButton}>{!isExpanded ? 'Read More' : 'Read Less'}</span>
+                <span style={{color: colorIndex(index)}} className='expand-button' onClick={handleExpandButton}>{!isExpanded ? 'Learn More' : 'Learn Less'}</span>
             </OpportunityCard>
         </OpportunityStyles>
     )
