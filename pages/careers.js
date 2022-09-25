@@ -4,10 +4,15 @@ import HeroImage from "../components/heroImage";
 import { COLORS } from "../styles/colors";
 import styled from 'styled-components';
 import AlternateFooter from "../components/alternateFooter";
+import Opportunity from '../components/opportunity';
 
 const PageStyles = styled.div`
     position: relative;
     margin: 100px auto 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
     max-width: 1450px;
     padding: 0 0 75px;
@@ -15,14 +20,12 @@ const PageStyles = styled.div`
     h2 {
         margin: 0 0 25px;
         font-size: 4.3em;
-        padding: 0 25px;
         color: ${COLORS.primaryBlue};
     }
 
     p {
         margin: 0 0 1.2em 0;
         font-size: 1.8em;
-        padding: 0 25px;
         &:last-child {
             margin: 0 0 0 0;
         }
@@ -40,9 +43,9 @@ const PageStyles = styled.div`
         }
     }
 
-    a {
+    .email-link {
         display: block;
-        margin: 50px 25px 0;
+        margin: 50px 0;
         width: 125px;
         font-size: 1.4em;
         text-decoration: none;
@@ -83,11 +86,40 @@ const VideoWrapper = styled.div`
     }
 `;
 
+const CareerHeader = styled.div`
+    position: relative;
+    margin: 0;
+    width: 35%;
+    height: auto;
+    padding: 0 0 25px 25px;
+
+    @media screen and (max-width: 900px) {
+        width: 100%;
+        padding: 0 25px 25px 25px;
+    }
+`;
+
+const OpportunityWrapper = styled.div`
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    width: 51.5%;
+    height: auto;
+    padding: 0;
+
+    @media screen and (max-width: 900px) {
+        width: 100%;
+    }
+`;
+
 function Careers({careersData}) {
     const title = careersData[0].introTitle;
     const mainImage = careersData[0].mainImage.asset;
     const copyBlocks = careersData[0].introCopy;
     const buttonText = careersData[0].emailButtonText;
+    const jobs = careersData[0].jobOpportunity;
 
     const [isMobile, setIsMobile] = useState(true);
     
@@ -109,13 +141,19 @@ function Careers({careersData}) {
                     </VideoWrapper>
                 )}
                 <PageStyles>
-                    <h2>{title}</h2>
-                    {copyBlocks.map((copy,idx) => {
-                        return (
-                            <p key={idx}>{copy.children.map((child,idx) => <span key={idx} className={child.marks.length ? child.marks.map(mark => mark).join(' ') : null}>{child.text}</span>)}</p>
-                        )
-                    })}
-                    <a href="mailto: info@leadingandlearning.com">{buttonText}</a>
+                    <CareerHeader>
+                        <h2>{title}</h2>
+                        {copyBlocks.map((copy,idx) => {
+                            return (
+                                <p key={idx}>{copy.children.map((child,idx) => <span key={idx} className={child.marks.length ? child.marks.map(mark => mark).join(' ') : null}>{child.text}</span>)}</p>
+                            )
+                        })}
+                        <a className='email-link' href="mailto: info@leadingandlearning.com">{buttonText}</a>
+                    </CareerHeader>
+                   
+                    <OpportunityWrapper>
+                        {jobs.map((job,idx) => <Opportunity key={idx} jobTitle={job.jobTitle} jobDescription={job.jobDescription} jobBenefits={job.jobBenefits} jobRequirements={job.jobRequirements} jobApply={job.jobApply} index={idx} />)}
+                    </OpportunityWrapper>
                 </PageStyles>
             </main>
             <AlternateFooter />
