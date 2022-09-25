@@ -29,7 +29,7 @@ const OpportunityStyles = styled.div`
         margin: 25px 0 0;
         width: 120px;
         font-size: 1.6em;
-        padding: 12px;
+        padding: 9px 12px;
         border: 1px solid;
         text-align: center;
         cursor: pointer;
@@ -153,7 +153,7 @@ export default function Opportunity({jobTitle, jobDescription, jobBenefits, jobR
                     </OpportunityDetails>
                 </HideWrapper>
 
-                <span style={{color: colorIndex(index)}} className='expand-button' onClick={handleExpandButton}>{!isExpanded ? 'Learn More' : 'Learn Less'}</span>
+                <span style={{borderColor: colorIndex(index)}} className='expand-button' onClick={handleExpandButton}>{!isExpanded ? 'Learn More' : 'Learn Less'}</span>
             </OpportunityCard>
         </OpportunityStyles>
     )
