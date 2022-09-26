@@ -4,7 +4,7 @@ import HeroImage from "../components/heroImage";
 import { COLORS } from "../styles/colors";
 import styled from 'styled-components';
 import AlternateFooter from "../components/alternateFooter";
-import Opportunity from '../components/opportunity';
+// import Opportunity from '../components/opportunity';
 
 const PageStyles = styled.div`
     position: relative;
@@ -89,7 +89,7 @@ const VideoWrapper = styled.div`
 const CareerHeader = styled.div`
     position: relative;
     margin: 0;
-    width: 35%;
+    width: 100%;
     height: auto;
     padding: 0 0 25px 25px;
 
@@ -99,27 +99,27 @@ const CareerHeader = styled.div`
     }
 `;
 
-const OpportunityWrapper = styled.div`
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0;
-    width: 51.5%;
-    height: auto;
-    padding: 0;
+// const OpportunityWrapper = styled.div`
+//     position: relative;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     margin: 0;
+//     width: 51.5%;
+//     height: auto;
+//     padding: 0;
 
-    @media screen and (max-width: 900px) {
-        width: 100%;
-    }
-`;
+//     @media screen and (max-width: 900px) {
+//         width: 100%;
+//     }
+// `;
 
 function Careers({careersData}) {
     const title = careersData[0].introTitle;
     const mainImage = careersData[0].mainImage.asset;
     const copyBlocks = careersData[0].introCopy;
     const buttonText = careersData[0].emailButtonText;
-    const jobs = careersData[0].jobOpportunity;
+    // const jobs = careersData[0].jobOpportunity;
 
     const [isMobile, setIsMobile] = useState(true);
     
@@ -151,9 +151,9 @@ function Careers({careersData}) {
                         <a className='email-link' href="mailto: info@leadingandlearning.com">{buttonText}</a>
                     </CareerHeader>
                    
-                    <OpportunityWrapper>
+                    {/* <OpportunityWrapper>
                         {jobs.map((job,idx) => <Opportunity key={idx} jobTitle={job.jobTitle} jobDescription={job.jobDescription} jobBenefits={job.jobBenefits} jobRequirements={job.jobRequirements} jobApply={job.jobApply} index={idx} />)}
-                    </OpportunityWrapper>
+                    </OpportunityWrapper> */}
                 </PageStyles>
             </main>
             <AlternateFooter />
