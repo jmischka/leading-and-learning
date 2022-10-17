@@ -167,6 +167,7 @@ export async function getStaticProps() {
       props: {
         careersData,
       },
+      revalidate: 60, // In seconds
     }
   }
 
