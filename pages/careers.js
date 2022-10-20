@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import client from "../client";
 import HeroImage from "../components/heroImage";
 import { COLORS } from "../styles/colors";
@@ -116,10 +116,11 @@ function Careers({careersData}) {
     const title = careersData[0].introTitle;
     const mainImage = careersData[0].mainImage.asset;
     const copyBlocks = careersData[0].introCopy;
-    const buttonText = careersData[0].emailButtonText;
     const jobs = careersData[0].jobOpportunity;
 
     const [isMobile, setIsMobile] = useState(true);
+    const [allJobs, setAllJobs] = useState(null);
+    const defaultJobsSet = useRef(null);
     
     useEffect(() => {
         let windowWidth = window.innerWidth;
@@ -128,8 +129,25 @@ function Careers({careersData}) {
         }
     }, []);
 
+    useEffect(() => {
+        const jobsArray = jobs.map((job,idx) => {
+            return {
+                [`job-${idx}`]: false
+            }
+        })
+        const obj = Object.assign(...jobsArray);
+        setAllJobs(obj);
+        defaultJobsSet.current = obj;
+    }, [jobs])
+
     const handleOpportunityClick = (e) => {
-        console.log(e.target.dataset.opportunity)
+        let targetJobObject = {[e.target.dataset.opportunity]: true}
+        let newObj = Object.assign({}, defaultJobsSet.current, targetJobObject);
+        setAllJobs(newObj);
+    }
+
+    const handleCloseOpportunityClick = () => {
+        setAllJobs(defaultJobsSet.current);
     }
 
     return (
@@ -147,10 +165,13 @@ function Careers({careersData}) {
                         <h2>{title}</h2>
                         {copyBlocks.map((copy,idx) => {
                             return (
-                                <p key={idx}>{copy.children.map((child,idx) => <span key={idx} className={child.marks.length ? child.marks.map(mark => mark).join(' ') : null}>{child.text}</span>)}</p>
+                                <p key={idx}>{copy.children.map((child,idx) => 
+                                    <span key={idx} className={child.marks.length 
+                                        ? child.marks.map(mark => mark).join(' ') 
+                                        : null}>{child.text}</span>)}
+                                </p>
                             )
                         })}
-                        {/* <a className='email-link' href="mailto: info@leadingandlearning.com">{buttonText}</a> */}
                     </CareerHeader>
                    <JobBriefsList>
                         {jobs.map((job,idx) => 
@@ -164,7 +185,19 @@ function Careers({careersData}) {
                             />)}
                    </JobBriefsList>
                 </PageStyles>
-                {jobs.map((job,idx) => <Opportunity key={idx} job={job} />)}
+                {jobs.map((job,idx) => 
+                    <Opportunity 
+                        key={idx} 
+                        category={job.jobCategory} 
+                        title={job.jobTitle}
+                        description={job.jobDescription} 
+                        benefits={job.jobBenefits}
+                        requirements={job.jobRequirements}
+                        applyLink={job.jobApply}
+                        jobIndex={`job-${idx}`}
+                        allJobsState={allJobs}
+                        handleCloseOpportunityClick={handleCloseOpportunityClick}
+                    />)}
             </main>
             <AlternateFooter />
         </>

@@ -10,6 +10,7 @@ const Opportunity = styled.li`
 
     .jobColorDash {
         position: absolute;
+        display: block;
         top: 25px;
         left: 25px;
         width: 25px;
@@ -49,6 +50,7 @@ const careerColor = (category) => {
 function OpportunityBrief({category, title, description, dataTag, handleOpportunityClick}) {
     return (
         <Opportunity>
+            <span className='jobColorDash' style={{backgroundColor: careerColor(category)}} />
             <h3 style={{color: careerColor(category)}}>{title}</h3>
             <p>{description[0].children[0].text}</p>
             <button 
