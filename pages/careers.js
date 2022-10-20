@@ -4,6 +4,8 @@ import HeroImage from "../components/heroImage";
 import { COLORS } from "../styles/colors";
 import styled from 'styled-components';
 import AlternateFooter from "../components/alternateFooter";
+import OpportunityBrief from '../components/opportunity-brief';
+import Opportunity from '../components/opportunity';
 // import Opportunity from '../components/opportunity';
 
 const PageStyles = styled.div`
@@ -108,42 +110,6 @@ const JobBriefsList = styled.ul`
     height: auto;
     padding: 0;
     list-style-type: none;
-
-    li {
-        position: relative;
-        margin: 0;
-        width: 50%;
-        height: auto;
-        padding: 50px 25px 25px;
-
-        .jobColorDash {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            width: 25px;
-            height: 3px;
-        }
-    }
-
-    h3 {
-        margin: 0 0 25px;
-        font-size: 3.2em;
-        line-height: 1.3;
-    }
-
-    button {
-        margin: 16px 0 0;
-        padding: 9px 12px;
-        border: 1px solid black;
-        background-color: transparent;
-        cursor: pointer;
-        transition-duration: .5s;
-        &:hover {
-            background-color: ${COLORS.primaryBlue};
-            color: white;
-            border: none;
-        }
-    }
 `;
 
 function Careers({careersData}) {
@@ -162,13 +128,8 @@ function Careers({careersData}) {
         }
     }, []);
 
-    const careerColor = (category) => {
-        if (category === 'tutoring') {
-            return `${COLORS.tutorPrimary}`;;
-        }
-        if (category === 'shepherding') {
-            return `${COLORS.shepherdPrimary}`;
-        }
+    const handleOpportunityClick = (e) => {
+        console.log(e.target.dataset.opportunity)
     }
 
     return (
@@ -192,18 +153,18 @@ function Careers({careersData}) {
                         {/* <a className='email-link' href="mailto: info@leadingandlearning.com">{buttonText}</a> */}
                     </CareerHeader>
                    <JobBriefsList>
-                        {jobs.map((job,idx) => {
-                            return (
-                                <li key={idx}>
-                                    <span className='jobColorDash' style={{backgroundColor: careerColor(job.jobCategory)}} />
-                                    <h3 style={{color: careerColor(job.jobCategory)}}>{job.jobTitle}</h3>
-                                    <p>{job.jobDescription[0].children[0].text}</p>
-                                    <button style={{borderColor: careerColor(job.jobCategory)}}>Learn More</button>
-                                </li>
-                            );
-                        })}
+                        {jobs.map((job,idx) => 
+                            <OpportunityBrief 
+                                key={idx} 
+                                category={job.jobCategory} 
+                                title={job.jobTitle} 
+                                description={job.jobDescription} 
+                                dataTag={`job-${idx}`}
+                                handleOpportunityClick={handleOpportunityClick}
+                            />)}
                    </JobBriefsList>
                 </PageStyles>
+                {jobs.map((job,idx) => <Opportunity key={idx} job={job} />)}
             </main>
             <AlternateFooter />
         </>
