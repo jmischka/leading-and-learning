@@ -135,6 +135,13 @@ const SectionStyles = styled.div`
             text-decoration: none;
         }
     }
+
+    .disclaimer {
+        display: block;
+        margin: 16px 0 0;
+        font-size: 1.6em;
+        line-height: 1.5;
+    }
 `
 
 const careerColor = (category) => {
@@ -188,6 +195,9 @@ export default function Opportunity({category,title,description,benefits,require
                             <p>Fill out this form to apply: 
                                 <a target="_blank" rel="noreferrer" className='apply-link' href={applyLink}>Application Form</a>
                             </p>
+                            <span className='disclaimer'>
+                                ****Note: You will need to upload a copy of your unofficial transcripts in order for this application to be considered complete.
+                            </span>
                         </div>
                     </SectionStyles>
                 </OpportunityContainer>

@@ -102,7 +102,7 @@ const CareerHeader = styled.div`
 `;
 
 const JobBriefsList = styled.ul`
-    margin: 25px 0 0;
+    margin: 50px 0 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -113,7 +113,6 @@ const JobBriefsList = styled.ul`
 `;
 
 function Careers({careersData}) {
-    const title = careersData[0].introTitle;
     const mainImage = careersData[0].mainImage.asset;
     const copyBlocks = careersData[0].introCopy;
     const jobs = careersData[0].jobOpportunity;
@@ -162,7 +161,6 @@ function Careers({careersData}) {
                 )}
                 <PageStyles>
                     <CareerHeader>
-                        <h2>{title}</h2>
                         {copyBlocks.map((copy,idx) => {
                             return (
                                 <p key={idx}>{copy.children.map((child,idx) => 
