@@ -15,6 +15,13 @@ const OpportunityStyles = styled.div`
     &.active-opportunity {
         top: 115px;
     }
+
+    @media screen and (max-width: 780px) {
+        height: calc(100vh - 90px);
+        &.active-opportunity {
+            top: 90px;
+        }
+    }
 `;
 
 const CloseButton = styled.div`
@@ -25,7 +32,8 @@ const CloseButton = styled.div`
     flex-direction: row;
     justify-content: flex-end;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1450px;
+    padding: 0 25px;
     height: auto;
     transform: translateX(-50%);
 
@@ -141,6 +149,22 @@ const SectionStyles = styled.div`
         margin: 16px 0 0;
         font-size: 1.6em;
         line-height: 1.5;
+    }
+
+    @media screen and (max-width: 900px) {
+        .section-title {
+            margin: 0;
+            width: 100%;
+            height: auto;
+            padding: 0 25px;
+        }
+
+        .content {
+            margin: 0;
+            width: 100%;
+            height: auto;
+            padding: 0 25px 25px;
+        }
     }
 `
 

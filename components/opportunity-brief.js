@@ -36,6 +36,10 @@ const Opportunity = styled.li`
             color: white;
         }
     }
+
+    @media screen and (max-width: 900px) {
+        width: 100%;
+    }
 `;
 
 const careerColor = (category) => {
