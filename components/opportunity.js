@@ -115,6 +115,15 @@ const SectionStyles = styled.div`
         line-height: 1.3;
     }
 
+    p {
+        margin: 0 0 18px;
+        font-size: 1.8em;
+        line-height: 1.5;
+        &:last-child {
+            margin: 0 0 0;
+        }
+    }
+
     ul {
         margin: 0;
         width: 100%;
@@ -189,7 +198,7 @@ export default function Opportunity({category,title,description,benefits,require
                 <OpportunityContainer>
                     <SectionStyles>
                         <div className='section-title'><h3 style={{color: careerColor(category)}}>{title}</h3></div>
-                        <div className='content'><p>{description[0].children[0].text}</p></div>
+                        <div className='content'>{description.map((descr,idx) => <p key={idx}>{descr.children[0].text}</p>)}</div>
                     </SectionStyles>
                     <SectionStyles>
                         <div className='section-title'><h3 style={{color: careerColor(category)}}>Benefits</h3></div>

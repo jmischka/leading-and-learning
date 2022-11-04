@@ -90,7 +90,7 @@ function OpportunityBrief({category, title, description, dataTag, handleOpportun
         <Opportunity>
             <span className='jobColorDash' style={{backgroundColor: careerColor(category)}} />
             <h3 style={{color: careerColor(category)}}>{title}</h3>
-            <p>{description[0].children[0].text}</p>
+            {description.map((descr,idx) => <p key={idx}>{descr.children[0].text}</p>)}
             <Button 
                 category={category}
                 data-opportunity={dataTag} 
