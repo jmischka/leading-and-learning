@@ -186,7 +186,7 @@ const careerColor = (category) => {
     }
 }
 
-export default function Opportunity({category,title,description,benefits,requirements,applyLink,jobIndex,allJobsState,handleCloseOpportunityClick}) {
+export default function Opportunity({category,title,description,benefits,requirements,applyLink,transcriptNote,jobIndex,allJobsState,handleCloseOpportunityClick}) {
     return (
         <OpportunityStyles className={!allJobsState ? null : allJobsState[jobIndex] ? 'active-opportunity' : null}>
             <CloseButton>
@@ -228,9 +228,10 @@ export default function Opportunity({category,title,description,benefits,require
                             <p>Fill out this form to apply: 
                                 <a target="_blank" rel="noreferrer" className='apply-link' href={applyLink}>Application Form</a>
                             </p>
-                            <span className='disclaimer'>
-                                ****Note: You will need to upload a copy of your unofficial transcripts in order for this application to be considered complete.
-                            </span>
+                            {transcriptNote
+                                ? <span className="disclaimer">{transcriptNote}</span>
+                                : null
+                            }
                         </div>
                     </SectionStyles>
                 </OpportunityContainer>

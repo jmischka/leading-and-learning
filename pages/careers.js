@@ -91,12 +91,11 @@ const VideoWrapper = styled.div`
 const CareerHeader = styled.div`
     position: relative;
     margin: 0;
-    width: 75%;
+    width: 100%;
     height: auto;
     padding: 0 25px;
 
     @media screen and (max-width: 900px) {
-        width: 100%;
         padding: 0 25px 25px 25px;
     }
 `;
@@ -192,6 +191,7 @@ function Careers({careersData}) {
                         benefits={job.jobBenefits}
                         requirements={job.jobRequirements}
                         applyLink={job.jobApply}
+                        transcriptNote={job.jobTranscript}
                         jobIndex={`job-${idx}`}
                         allJobsState={allJobs}
                         handleCloseOpportunityClick={handleCloseOpportunityClick}
