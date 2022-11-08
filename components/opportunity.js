@@ -9,7 +9,7 @@ const OpportunityStyles = styled.div`
     height: calc(100vh - 115px);
     background-color: white;
     padding: 75px 25px 0;
-    transition-duration: .5s;
+    transition-duration: .7s;
     transition-timing-function: cubic-bezier(0.01, 0, 0.17, 1.01);
     z-index: 100;
     &.active-opportunity {
@@ -83,6 +83,11 @@ const OpportunityContainer = styled.div`
     max-width: 1450px;
     height: auto;
     padding: 0 0 75px;
+    opacity: 0;
+    transition-duration: 1s;
+    &.active {
+        opacity: 1;
+    }
 `
 
 const SectionStyles = styled.div`
@@ -195,7 +200,7 @@ export default function Opportunity({category,title,description,benefits,require
                 </button>
             </CloseButton>
             <OpportunityWindow>
-                <OpportunityContainer>
+                <OpportunityContainer className={!allJobsState ? null : allJobsState[jobIndex] ? 'active' : null}>
                     <SectionStyles>
                         <div className='section-title'><h3 style={{color: careerColor(category)}}>{title}</h3></div>
                         <div className='content'>{description.map((descr,idx) => <p key={idx}>{descr.children[0].text}</p>)}</div>
