@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import client from "../client";
 import HeroImage from "../components/heroImage";
 import { COLORS } from "../styles/colors";
 import styled from 'styled-components';
 import AlternateFooter from "../components/alternateFooter";
+import OpportunityBrief from '../components/opportunity-brief';
+import Opportunity from '../components/opportunity';
 // import Opportunity from '../components/opportunity';
 
 const PageStyles = styled.div`
@@ -91,37 +93,32 @@ const CareerHeader = styled.div`
     margin: 0;
     width: 100%;
     height: auto;
-    padding: 0 0 25px 25px;
+    padding: 0 25px;
 
     @media screen and (max-width: 900px) {
-        width: 100%;
         padding: 0 25px 25px 25px;
     }
 `;
 
-// const OpportunityWrapper = styled.div`
-//     position: relative;
-//     display: flex;
-//     flex-direction: row;
-//     flex-wrap: wrap;
-//     margin: 0;
-//     width: 51.5%;
-//     height: auto;
-//     padding: 0;
-
-//     @media screen and (max-width: 900px) {
-//         width: 100%;
-//     }
-// `;
+const JobBriefsList = styled.ul`
+    margin: 50px 0 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    list-style-type: none;
+`;
 
 function Careers({careersData}) {
-    const title = careersData[0].introTitle;
     const mainImage = careersData[0].mainImage.asset;
     const copyBlocks = careersData[0].introCopy;
-    const buttonText = careersData[0].emailButtonText;
-    // const jobs = careersData[0].jobOpportunity;
+    const jobs = careersData[0].jobOpportunity;
 
     const [isMobile, setIsMobile] = useState(true);
+    const [allJobs, setAllJobs] = useState(null);
+    const defaultJobsSet = useRef(null);
     
     useEffect(() => {
         let windowWidth = window.innerWidth;
@@ -129,6 +126,27 @@ function Careers({careersData}) {
             setIsMobile(false);
         }
     }, []);
+
+    useEffect(() => {
+        const jobsArray = jobs.map((job,idx) => {
+            return {
+                [`job-${idx}`]: false
+            }
+        })
+        const obj = Object.assign(...jobsArray);
+        setAllJobs(obj);
+        defaultJobsSet.current = obj;
+    }, [jobs])
+
+    const handleOpportunityClick = (e) => {
+        let targetJobObject = {[e.target.dataset.opportunity]: true}
+        let newObj = Object.assign({}, defaultJobsSet.current, targetJobObject);
+        setAllJobs(newObj);
+    }
+
+    const handleCloseOpportunityClick = () => {
+        setAllJobs(defaultJobsSet.current);
+    }
 
     return (
         <>
@@ -142,19 +160,42 @@ function Careers({careersData}) {
                 )}
                 <PageStyles>
                     <CareerHeader>
-                        <h2>{title}</h2>
                         {copyBlocks.map((copy,idx) => {
                             return (
-                                <p key={idx}>{copy.children.map((child,idx) => <span key={idx} className={child.marks.length ? child.marks.map(mark => mark).join(' ') : null}>{child.text}</span>)}</p>
+                                <p key={idx}>{copy.children.map((child,idx) => 
+                                    <span key={idx} className={child.marks.length 
+                                        ? child.marks.map(mark => mark).join(' ') 
+                                        : null}>{child.text}</span>)}
+                                </p>
                             )
                         })}
-                        <a className='email-link' href="mailto: info@leadingandlearning.com">{buttonText}</a>
                     </CareerHeader>
-                   
-                    {/* <OpportunityWrapper>
-                        {jobs.map((job,idx) => <Opportunity key={idx} jobTitle={job.jobTitle} jobDescription={job.jobDescription} jobBenefits={job.jobBenefits} jobRequirements={job.jobRequirements} jobApply={job.jobApply} index={idx} />)}
-                    </OpportunityWrapper> */}
+                   <JobBriefsList>
+                        {jobs.map((job,idx) => 
+                            <OpportunityBrief 
+                                key={idx} 
+                                category={job.jobCategory} 
+                                title={job.jobTitle} 
+                                description={job.jobDescription} 
+                                dataTag={`job-${idx}`}
+                                handleOpportunityClick={handleOpportunityClick}
+                            />)}
+                   </JobBriefsList>
                 </PageStyles>
+                {jobs.map((job,idx) => 
+                    <Opportunity 
+                        key={idx} 
+                        category={job.jobCategory} 
+                        title={job.jobTitle}
+                        description={job.jobDescription} 
+                        benefits={job.jobBenefits}
+                        requirements={job.jobRequirements}
+                        applyLink={job.jobApply}
+                        transcriptNote={job.jobTranscript}
+                        jobIndex={`job-${idx}`}
+                        allJobsState={allJobs}
+                        handleCloseOpportunityClick={handleCloseOpportunityClick}
+                    />)}
             </main>
             <AlternateFooter />
         </>
