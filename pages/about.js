@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import client from "../client";
 import Footer from "../components/footer";
 import Testimonial from "../components/testimonial";
 import { COLORS } from "../styles/colors";
 import styled from 'styled-components';
 import HeroImage from "../components/heroImage";
+import TeamMemberCard from '../components/team-member-card';
+import TeamPerson from '../components/team-person';
 
 const IntroStyles = styled.div`
     position: relative;
@@ -151,6 +153,18 @@ const TeamStyles = styled.div`
     }
 `;
 
+const TeamMemberList = styled.ul`
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 50px 0 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    list-style-type: none;
+`;
+
 const FlexWrapper = styled.div`
     position: relative;
     margin: 0;
@@ -193,7 +207,7 @@ const VideoWrapper = styled.div`
     }
 `;
 
-function About({aboutData}) {
+function About({aboutData, teamData}) {
     const pageTitle = aboutData[0].pageTitle
     const mainImage = aboutData[0].mainImage.asset;
     const introTitle = aboutData[0].intro;
@@ -203,8 +217,11 @@ function About({aboutData}) {
     const testimonialData = aboutData[0].testimonial;
     const teamTitle = aboutData[0].teamIntroTitle;
     const teamCopy = aboutData[0].teamIntroCopy
+    const teamMembers = teamData[0].teamMembers;
 
     const [isMobile, setIsMobile] = useState(true);
+    const [allTeamMembers, setAllTeamMembers] = useState(null);
+    const teamMemberDefaultState = useRef(null);
     
     useEffect(() => {
         let windowWidth = window.innerWidth;
@@ -213,6 +230,27 @@ function About({aboutData}) {
         }
     }, []);
 
+    useEffect(() => {
+        const memberArray = teamMembers.map((member,idx) => {
+            return {
+                [`member-${idx}`]: false,
+            }
+        });
+        let obj = Object.assign(...memberArray);
+        setAllTeamMembers(obj);
+        teamMemberDefaultState.current = obj;
+    }, [teamMembers]);
+
+    const handleTeamMemberClick = (e) => {
+        let member = {[e.target.dataset.member]: true};
+        let newObj = Object.assign({}, teamMemberDefaultState.current, member);
+        setAllTeamMembers(newObj);
+    }
+
+    const closePerson = () => {
+        setAllTeamMembers(teamMemberDefaultState.current);
+    }
+    
     return (
         <>
             <main>
@@ -229,7 +267,10 @@ function About({aboutData}) {
                         <div className="copy-blocks">
                             {introText.map((copy,idx) => {
                                 return (
-                                    <p key={idx}>{copy.children.map((child,idx) => <span key={idx} className={child.marks.length ? child.marks.map(mark => mark).join(' ') : null}>{child.text}</span>)}</p>
+                                    <p key={idx}>{copy.children.map((child,idx) => 
+                                        <span key={idx} className={child.marks.length 
+                                            ? child.marks.map(mark => mark).join(' ') 
+                                            : null}>{child.text}</span>)}</p>
                                 )
                             })}
                         </div>
@@ -259,7 +300,31 @@ function About({aboutData}) {
                             })}
                         </div>
                     </FlexWrapper>
+                    <TeamMemberList>
+                        {teamMembers.map((member, idx) => 
+                            <TeamMemberCard 
+                                key={idx} 
+                                portrait={member.headshot} 
+                                category={member.positionCategory} 
+                                name={member.fullName} 
+                                title={member.positionTitle} 
+                                index={idx}
+                                handleTeamMemberClick={handleTeamMemberClick}
+                            />)}
+                    </TeamMemberList>
                 </TeamStyles>
+                {teamMembers.map((member,idx) => 
+                    <TeamPerson 
+                        key={idx} 
+                        portrait={member.headshot} 
+                        category={member.positionCategory} 
+                        name={member.fullName} 
+                        title={member.positionTitle} 
+                        bio={member.bio}
+                        identifier={`member-${idx}`}
+                        allTeamMembers={allTeamMembers}
+                        closePerson={closePerson}
+                    />)}
             </main>
             <Footer primaryColor={COLORS.primaryBlue} />
         </>
@@ -268,9 +333,11 @@ function About({aboutData}) {
 
 export async function getStaticProps() {
     const aboutData = await client.fetch(`*[_type == 'aboutPage']`)
+    const teamData = await client.fetch(`*[_type == 'aboutPage']{teamMembers[]->}`)
     return {
       props: {
         aboutData,
+        teamData,
       },
       revalidate: 60, // In seconds
     }
