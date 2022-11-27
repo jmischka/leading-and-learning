@@ -6,11 +6,18 @@ import { COLORS } from "../styles/colors";
 
 const CardStyles = styled.li`
     position: relative;
-    margin: 0;
-    width: 33.333%;
+    margin: 0 1.333% 1.333% 0;
+    width: 32%;
     height: auto;
     padding: 25px;
+    background-color: white;
     cursor: pointer;
+    transition-duration: .35s;
+    &:hover {
+        z-index: 10;
+        box-shadow: 5px 5px 30px rgba(0,0,0,.15);
+        transform: translateY(-7px);
+    }
 
     figure {
         position: relative;
@@ -22,11 +29,13 @@ const CardStyles = styled.li`
     }
 
     @media screen and (max-width: 1000px) {
-        width: 50%;
+        width: 48%;
+        margin: 0 2% 2% 0;
     }
 
     @media screen and (max-width: 700px) {
         width: 100%;
+        margin: 0 0 2% 0;
     }
 `;
 
