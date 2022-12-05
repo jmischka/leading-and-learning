@@ -116,18 +116,6 @@ const TestimonialAttr = styled.span`
     text-align: center;
 `;
 
-const TestimonialDesc = styled.span`
-    position: relative;
-    display: block;
-    font-size: 1.2em;
-    line-height: 1.3;
-    margin: 0;
-    width: 100%;
-    height: auto;
-    text-align: center;
-    font-style: italic; 
-`;
-
 export default function Testimonial({serviceTitle, testimonialData}) {
     const [slideShow, setSlideShow] = useState(false)
     const slideShowLength = useRef(testimonialData.length);
@@ -225,7 +213,6 @@ export default function Testimonial({serviceTitle, testimonialData}) {
                                     <TestimonialText style={{color: colorFinder(serviceTitle)}}>{data.testimonial[0].children[0].text}</TestimonialText>
                                     <TestimonialAttr>{data.byline}</TestimonialAttr>
                                     <TestimonialAttr>{data.schoolChoice}</TestimonialAttr>
-                                    <TestimonialDesc>Testimonial</TestimonialDesc>
                                 </TestimonialContentWrapper>
                             </TestimonialContent>
                         )
