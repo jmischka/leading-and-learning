@@ -99,9 +99,14 @@ const PersonContent = styled.div`
 
     p {
         margin: 0 0 24px;
+        font-style: normal;
         &:last-child {
             margin: 0 0 0;
         }
+    }
+
+    .ital {
+        font-style: italic;
     }
 
     @media screen and (max-width: 950px) {
@@ -192,7 +197,10 @@ function TeamPerson({ portrait, category, name, title, bio, identifier, allTeamM
                         <PersonName category={category}>{name}</PersonName>
                         <PersonTitle>{title}</PersonTitle>
                         <Spacer category={category} />
-                        {bio.map((article,idx) => <p key={idx}>{article.children[0].text}</p>)}
+                        {bio.map((article,idx) => 
+                            <p key={idx}>{article.children.map(child => 
+                            child.marks[0] === 'em' ? <span className="ital">{child.text}</span> : child.text)}</p>)
+                        }
                     </PersonContent>
                     <PersonPortrait>
                     <figure>
