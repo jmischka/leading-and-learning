@@ -8,11 +8,13 @@ import { COLORS } from "../styles/colors";
 const LinkStyles = styled.li`
     margin: 0;
     padding: 0;
-    width: 25%;
+    width: 24%;
     height: auto;
+    background-color: white;
+    transition-duration: .5s;
 
     @media screen and (max-width: 950px) {
-        width: 50%;
+        width: 49%;
     }
 
     @media screen and (max-width: 600px) {
@@ -58,6 +60,11 @@ const LinkStyles = styled.li`
         margin: 0 0 6px 0;
         font-size: 2.4em;
         line-height: 1;
+    }
+
+    &:hover {
+        transform: translateY(-7px);
+        box-shadow: 5px 5px 30px rgba(0,0,0,.15);
     }
 `;
 

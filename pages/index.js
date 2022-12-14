@@ -123,6 +123,7 @@ const ServicesContent = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
     height: auto;
     list-style-type: none;
